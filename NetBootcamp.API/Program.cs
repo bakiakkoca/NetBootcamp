@@ -1,5 +1,7 @@
 using NetBootcamp.API.Roles;
-using NetBootcamp.API.Users;
+using NetBootcamp.Repository.Roles;
+using NetBootcamp.Repository.Users;
+using NetBootcamp.Service.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
 
 
 var app = builder.Build();

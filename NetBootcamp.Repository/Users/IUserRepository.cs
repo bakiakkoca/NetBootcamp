@@ -1,4 +1,4 @@
-﻿namespace NetBootcamp.API.Users
+﻿namespace NetBootcamp.Repository.Users
 {
     public interface IUserRepository
     {

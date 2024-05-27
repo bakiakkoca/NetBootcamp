@@ -1,8 +1,8 @@
 ﻿using System.Collections.Immutable;
-using NetBootcamp.API.Roles.DTOs;
-using NetBootcamp.API.SharedDTOs;
+using NetBootcamp.Service.Roles.DTOs;
+using NetBootcamp.Service.SharedDTOs;
 
-namespace NetBootcamp.API.Roles
+namespace NetBootcamp.Repository.Roles
 {
     public interface IRoleService
     {

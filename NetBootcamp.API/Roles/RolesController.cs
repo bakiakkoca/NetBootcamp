@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NetBootcamp.API.Controllers;
-using NetBootcamp.API.Roles.DTOs;
+using NetBootcamp.Repository.Roles;
+using NetBootcamp.Service.Roles.DTOs;
 
 namespace NetBootcamp.API.Roles
 {
@@ -26,6 +27,6 @@ namespace NetBootcamp.API.Roles
 
         [HttpDelete("{roleId}")]
         public IActionResult Delete(int roleId) => CreateActionResult(roleService.Delete(roleId));
-        
+
     }
 }

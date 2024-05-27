@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34902.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBootcamp.API", "NetBootcamp.API\NetBootcamp.API.csproj", "{71713610-301A-40C4-A43F-AB6BD041A6EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBootcamp.API", "NetBootcamp.API\NetBootcamp.API.csproj", "{71713610-301A-40C4-A43F-AB6BD041A6EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBootcamp.WEB", "NetBootcamp.WEB\NetBootcamp.WEB.csproj", "{BCE0B486-BADE-4BC1-B911-745DE4998402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetBootcamp.WEB", "NetBootcamp.WEB\NetBootcamp.WEB.csproj", "{BCE0B486-BADE-4BC1-B911-745DE4998402}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBootcamp.Service", "NetBootcamp.Service\NetBootcamp.Service.csproj", "{4089E55F-1411-4ABE-BD80-A0FF39381EC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBootcamp.Repository", "NetBootcamp.Repository\NetBootcamp.Repository.csproj", "{13995D24-8342-4819-8397-7212D56953AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{BCE0B486-BADE-4BC1-B911-745DE4998402}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCE0B486-BADE-4BC1-B911-745DE4998402}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCE0B486-BADE-4BC1-B911-745DE4998402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4089E55F-1411-4ABE-BD80-A0FF39381EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4089E55F-1411-4ABE-BD80-A0FF39381EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4089E55F-1411-4ABE-BD80-A0FF39381EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4089E55F-1411-4ABE-BD80-A0FF39381EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13995D24-8342-4819-8397-7212D56953AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13995D24-8342-4819-8397-7212D56953AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13995D24-8342-4819-8397-7212D56953AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13995D24-8342-4819-8397-7212D56953AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

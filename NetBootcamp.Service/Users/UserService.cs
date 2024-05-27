@@ -1,9 +1,10 @@
 ﻿using System.Collections.Immutable;
 using System.Net;
-using NetBootcamp.API.SharedDTOs;
-using NetBootcamp.API.Users.DTOs;
+using NetBootcamp.Repository.Users;
+using NetBootcamp.Service.SharedDTOs;
+using NetBootcamp.Service.Users.DTOs;
 
-namespace NetBootcamp.API.Users
+namespace NetBootcamp.Service.Users
 {
     public class UserService(IUserRepository userRepository) : IUserService
     {

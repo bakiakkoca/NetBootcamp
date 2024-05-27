@@ -1,4 +1,4 @@
-﻿namespace NetBootcamp.API.Roles
+﻿namespace NetBootcamp.Repository.Roles
 {
     public interface IRoleRepository
     {

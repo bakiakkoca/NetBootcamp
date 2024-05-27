@@ -1,8 +1,8 @@
 ﻿using System.Collections.Immutable;
-using NetBootcamp.API.SharedDTOs;
-using NetBootcamp.API.Users.DTOs;
+using NetBootcamp.Service.SharedDTOs;
+using NetBootcamp.Service.Users.DTOs;
 
-namespace NetBootcamp.API.Users
+namespace NetBootcamp.Service.Users
 {
     public interface IUserService
     {

@@ -1,4 +1,4 @@
-﻿namespace NetBootcamp.API.Roles
+﻿namespace NetBootcamp.Repository.Roles
 {
     public class RoleRepository : IRoleRepository
     {
@@ -13,7 +13,6 @@
 
         public void Create(Role role)
         {
-            var methodName = nameof(RolesController.GetById);
             _roles.Add(role);
 
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NetBootcamp.API.Controllers;
-using NetBootcamp.API.Users.DTOs;
+using NetBootcamp.Service.Users;
+using NetBootcamp.Service.Users.DTOs;
 
 namespace NetBootcamp.API.Users
 {

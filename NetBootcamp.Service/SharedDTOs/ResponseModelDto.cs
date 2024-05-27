@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json.Serialization;
 
-namespace NetBootcamp.API.SharedDTOs
+namespace NetBootcamp.Service.SharedDTOs
 {
     public struct NoContent;
 

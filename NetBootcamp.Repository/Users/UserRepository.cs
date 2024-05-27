@@ -1,4 +1,4 @@
-﻿namespace NetBootcamp.API.Users
+﻿namespace NetBootcamp.Repository.Users
 {
     public class UserRepository : IUserRepository
     {
@@ -18,7 +18,6 @@
 
         public void Create(User user)
         {
-            var methodName = nameof(UsersController.GetById);
             _users.Add(user);
         }
 
