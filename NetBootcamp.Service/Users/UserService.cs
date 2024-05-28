@@ -1,96 +1,94 @@
 ﻿using System.Collections.Immutable;
 using System.Net;
+using AutoMapper;
+using NetBootcamp.Repository;
 using NetBootcamp.Repository.Users;
 using NetBootcamp.Service.SharedDTOs;
 using NetBootcamp.Service.Users.DTOs;
 
 namespace NetBootcamp.Service.Users
 {
-    public class UserService(IUserRepository userRepository) : IUserService
+    public class UserService(IGenericRepository<User> userRepository, IUnitOfWork unitOfWork, IMapper mapper) : IUserService
     {
-        public ResponseModelDto<ImmutableList<UserDto>> GetAll()
+        public async Task<ResponseModelDto<ImmutableList<UserDto>>> GetAll()
         {
-            var userList = userRepository.GetAll().Select(user => new UserDto(
-                user.Id,
-                user.Name,
-                user.Surname,
-                user.Email,
-                user.Created.ToShortDateString()
-            )).ToImmutableList();
+            var usersAll = await userRepository.GetAll();
 
-            return ResponseModelDto<ImmutableList<UserDto>>.Success(userList);
+            var userListAsDto = mapper.Map<List<UserDto>>(usersAll);
+
+            return ResponseModelDto<ImmutableList<UserDto>>.Success(userListAsDto.ToImmutableList());
         }
 
 
-        public ResponseModelDto<UserDto?> GetById(int id)
+        public async Task<ResponseModelDto<UserDto?>> GetById(int id)
         {
-            var hasUser = userRepository.GetById(id);
+            var hasUser = await userRepository.GetById(id);
 
             if (hasUser is null)
             {
-                return ResponseModelDto<UserDto?>.Fail("Kullanıcı bulunamadı", HttpStatusCode.NotFound);
+                return  ResponseModelDto<UserDto?>.Fail("Kullanıcı bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var newDto = new UserDto(
-                hasUser.Id, 
-                hasUser.Name, 
-                hasUser.Surname, 
-                hasUser.Email, 
-                hasUser.Created.ToShortDateString()
-            );
+            var userAsDto = mapper.Map<UserDto>(hasUser);
 
-            return ResponseModelDto<UserDto?>.Success(newDto);
+            return ResponseModelDto<UserDto?>.Success(userAsDto);
         }
 
 
-        public ResponseModelDto<int> Create(UserCreateRequestDto request)
+        public async Task<ResponseModelDto<int>> Create(UserCreateRequestDto request)
         {
-            var newUser = new User()
+            var newUser = new User
             {
-                Id = userRepository.GetAll().Count + 1,
-                Name = request.Name,
-                Surname = request.Surname,
+                Name = request.Name.Trim(),
+                Surname = request.Surname.Trim(),
                 Email = request.Email,
                 Created = DateTime.Now
             };
 
-            userRepository.Create(newUser);
+            await userRepository.Create(newUser);
+            await unitOfWork.CommitAsync();
 
             return ResponseModelDto<int>.Success(newUser.Id, HttpStatusCode.Created);
         }
 
-        public ResponseModelDto<NoContent> Update(int userId, UserUpdateRequestDto request)
+        public async Task<ResponseModelDto<NoContent>> Update(int userId, UserUpdateRequestDto request)
         {
-            var hasUser = userRepository.GetById(userId);
-            if (hasUser is null)
-            {
-                return ResponseModelDto<NoContent>.Fail("Güncellemeye çalışılan kişi bulunamadı", HttpStatusCode.NotFound);
-            }
+            var hasUser = await userRepository.GetById(userId);
+            //if (hasUser is null)
+            //{
+            //    return ResponseModelDto<NoContent>.Fail("Güncellemeye çalışılan kişi bulunamadı", HttpStatusCode.NotFound);
+            //}
 
-            var updateUser = new User()
-            {
-                Id = userId,
-                Name = request.Name,
-                Surname = request.Surname,
-                Email = request.Email,
-            };
+            //var updateUser = new User()
+            //{
+            //    Id = userId,
+            //    Name = request.Name,
+            //    Surname = request.Surname,
+            //    Email = request.Email,
+            //};
 
-            userRepository.Update(updateUser);
+            hasUser.Name = request.Name;
+            hasUser.Surname = request.Surname;
+            hasUser.Email = request.Email;
+
+            await userRepository.Update(hasUser);
+            await unitOfWork.CommitAsync();
 
             return ResponseModelDto<NoContent>.Success(HttpStatusCode.NoContent);
 
         }
 
-        public ResponseModelDto<NoContent> Delete(int id)
+        public async Task<ResponseModelDto<NoContent>> Delete(int id)
         {
-            var hasUser = userRepository.GetById(id);
+            //var hasUser = await userRepository.GetById(id);
 
-            if (hasUser is null)
-            {
-                return ResponseModelDto<NoContent>.Fail("Silinmeye çalışılan ürün bulunamadı", HttpStatusCode.NotFound);
-            }
+            //if (hasUser is null)
+            //{
+            //    return ResponseModelDto<NoContent>.Fail("Silinmeye çalışılan ürün bulunamadı", HttpStatusCode.NotFound);
+            //}
 
-            userRepository.Delete(id);
+            await userRepository.Delete(id);
+            await unitOfWork.CommitAsync();
             return ResponseModelDto<NoContent>.Success(HttpStatusCode.NoContent);
         }
     }

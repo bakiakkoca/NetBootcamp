@@ -6,13 +6,13 @@ namespace NetBootcamp.Service.Users
 {
     public interface IUserService
     {
-        ResponseModelDto<ImmutableList<UserDto>> GetAll();
+        Task<ResponseModelDto<ImmutableList<UserDto>>> GetAll();
 
-        ResponseModelDto<UserDto?> GetById(int id);
+        Task<ResponseModelDto<UserDto?>> GetById(int id);
 
-        ResponseModelDto<int> Create(UserCreateRequestDto request);
+        Task<ResponseModelDto<int>> Create(UserCreateRequestDto request);
 
-        ResponseModelDto<NoContent> Update(int userId, UserUpdateRequestDto request);
-        ResponseModelDto<NoContent> Delete(int id);
+        Task<ResponseModelDto<NoContent>> Update(int userId, UserUpdateRequestDto request);
+        Task<ResponseModelDto<NoContent>> Delete(int id);
     }
 }

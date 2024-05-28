@@ -6,13 +6,13 @@ namespace NetBootcamp.Repository.Roles
 {
     public interface IRoleService
     {
-        ResponseModelDto<ImmutableList<RoleDto>> GetAll();
+        Task<ResponseModelDto<ImmutableList<RoleDto>>> GetAll();
 
-        ResponseModelDto<RoleDto?> GetById(int id);
+        Task<ResponseModelDto<RoleDto?>> GetById(int id);
 
-        ResponseModelDto<int> Create(RoleCreateRequestDto request);
+        Task<ResponseModelDto<int>> Create(RoleCreateRequestDto request);
 
-        ResponseModelDto<NoContent> Delete(int roleId);
-        ResponseModelDto<NoContent> Update(int roleId, RoleUpdateRequestDto request);
+        Task<ResponseModelDto<NoContent>> Delete(int roleId);
+        Task<ResponseModelDto<NoContent>> Update(int roleId, RoleUpdateRequestDto request);
     }
 }

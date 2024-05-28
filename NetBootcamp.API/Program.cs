@@ -1,6 +1,9 @@
+using Microsoft.EntityFrameworkCore;
 using NetBootcamp.API.Roles;
+using NetBootcamp.Repository;
 using NetBootcamp.Repository.Roles;
 using NetBootcamp.Repository.Users;
+using NetBootcamp.Service;
 using NetBootcamp.Service.Users;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,10 +16,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+
+builder.Services.AddDbContext<AppDbContext>(x =>
+    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), x =>
+    {
+        x.MigrationsAssembly(typeof(RepositoryAssembly).Assembly.GetName().Name);
+    }));
+
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleService, RoleService>();
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddAutoMapper(typeof(ServiceAssembly).Assembly);
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+
+
 
 
 

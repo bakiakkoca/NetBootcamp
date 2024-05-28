@@ -1,8 +1,7 @@
 ﻿namespace NetBootcamp.Repository.Users
 {
-    public class User
+    public class User : BaseEntity<int>
     {
-        public int Id { get; set; }
         public string Name { get; set; } = default!;
         public string Surname { get; set; } = default!;
         public string Email { get; set; } = default!;
