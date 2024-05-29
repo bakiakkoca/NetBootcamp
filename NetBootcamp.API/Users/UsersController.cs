@@ -5,7 +5,7 @@ using NetBootcamp.Service.Users.DTOs;
 
 namespace NetBootcamp.API.Users
 {
-    
+
     public class UsersController(IUserService userService) : CustomBaseController
     {
         [HttpGet]

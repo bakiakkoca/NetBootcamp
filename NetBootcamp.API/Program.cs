@@ -1,10 +1,10 @@
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using NetBootcamp.API.Roles;
 using NetBootcamp.Repository;
-using NetBootcamp.Repository.Roles;
-using NetBootcamp.Repository.Users;
 using NetBootcamp.Service;
-using NetBootcamp.Service.Users;
+using NetBootcamp.Service.Products.Configuration;
+using NetBootcamp.Service.Roles.Configuration;
+using NetBootcamp.Service.Users.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +23,14 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         x.MigrationsAssembly(typeof(RepositoryAssembly).Assembly.GetName().Name);
     }));
 
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddAutoMapper(typeof(ServiceAssembly).Assembly);
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+builder.Services.AddUserService();
+builder.Services.AddRoleService();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddProductService();
 
 
 
@@ -44,9 +46,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

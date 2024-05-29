@@ -12,7 +12,7 @@ namespace NetBootcamp.Repository.Roles.Configuration
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
+            builder.Property(role => role.Name).IsRequired().HasMaxLength(100);
         }
     }
 }

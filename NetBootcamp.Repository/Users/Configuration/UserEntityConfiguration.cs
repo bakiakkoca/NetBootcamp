@@ -12,10 +12,10 @@ namespace NetBootcamp.Repository.Users.Configuration
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Surname).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Email).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Created).IsRequired();
+            builder.Property(user => user.Name).IsRequired().HasMaxLength(100);
+            builder.Property(user => user.Surname).IsRequired().HasMaxLength(100);
+            builder.Property(user => user.Email).IsRequired().HasMaxLength(100);
+            builder.Property(user => user.Created).IsRequired();
         }
     }
 }

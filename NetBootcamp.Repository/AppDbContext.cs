@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using NetBootcamp.Repository.Products;
 using NetBootcamp.Repository.Roles;
 using NetBootcamp.Repository.Users;
 
@@ -21,6 +22,7 @@ namespace NetBootcamp.Repository
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

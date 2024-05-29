@@ -8,7 +8,11 @@ using NetBootcamp.Service.Users.DTOs;
 
 namespace NetBootcamp.Service.Users
 {
-    public class UserService(IGenericRepository<User> userRepository, IUnitOfWork unitOfWork, IMapper mapper) : IUserService
+    public class UserService(
+        IGenericRepository<User> userRepository, 
+        IUnitOfWork unitOfWork, 
+        IMapper mapper) 
+        : IUserService
     {
         public async Task<ResponseModelDto<ImmutableList<UserDto>>> GetAll()
         {
