@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using NetBootcamp.Repository.Users;
+using NetBootcamp.Service.Users.DTOs;
 using NetBootcamp.Service.Users.UserCreateUseCase;
+using NetBootcamp.Service.Users.UserUpdateNameUseCase;
 
 namespace NetBootcamp.Service.Users.Configuration
 {
@@ -15,6 +18,8 @@ namespace NetBootcamp.Service.Users.Configuration
         {
             services.AddScoped<IUserService, UserService>();
             services.AddValidatorsFromAssemblyContaining<UserCreateRequestValidator>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddValidatorsFromAssemblyContaining<UserUpdateNameRequestValidator>();
 
         }
     }

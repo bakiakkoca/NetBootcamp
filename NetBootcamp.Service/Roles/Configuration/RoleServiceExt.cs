@@ -7,6 +7,7 @@ using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using NetBootcamp.Repository.Roles;
 using NetBootcamp.Service.Roles.RoleCreateUseCase;
+using NetBootcamp.Service.Roles.RoleUpdateNameUseCase;
 
 namespace NetBootcamp.Service.Roles.Configuration
 {
@@ -16,6 +17,9 @@ namespace NetBootcamp.Service.Roles.Configuration
         {
             services.AddScoped<IRoleService, RoleService>();
             services.AddValidatorsFromAssemblyContaining<RoleCreateRequestValidator>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddValidatorsFromAssemblyContaining<RoleUpdateNameRequestValidator>();
+
 
         }
     }

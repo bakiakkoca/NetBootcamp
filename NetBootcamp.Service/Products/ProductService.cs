@@ -9,7 +9,7 @@ using NetBootcamp.Service.SharedDTOs;
 namespace NetBootcamp.Service.Products
 {
     public class ProductService(
-        IGenericRepository<Product> productRepository,
+        IProductRepository productRepository,
         IUnitOfWork unitOfWork,
         IMapper mapper) 
         : IProductService
@@ -65,6 +65,13 @@ namespace NetBootcamp.Service.Products
             hasProduct.Stock = request.Stock;
 
             await productRepository.Update(hasProduct);
+            await unitOfWork.CommitAsync();
+            return ResponseModelDto<NoContent>.Success(HttpStatusCode.NoContent);
+        }
+
+        public async Task<ResponseModelDto<NoContent>> UpdateProductName(int id, string name)
+        {
+            await productRepository.UpdateProductName(name, id);
             await unitOfWork.CommitAsync();
             return ResponseModelDto<NoContent>.Success(HttpStatusCode.NoContent);
         }

@@ -9,7 +9,7 @@ using NetBootcamp.Service.Users.DTOs;
 namespace NetBootcamp.Service.Users
 {
     public class UserService(
-        IGenericRepository<User> userRepository, 
+        IUserRepository userRepository, 
         IUnitOfWork unitOfWork, 
         IMapper mapper) 
         : IUserService
@@ -22,7 +22,6 @@ namespace NetBootcamp.Service.Users
 
             return ResponseModelDto<ImmutableList<UserDto>>.Success(userListAsDto.ToImmutableList());
         }
-
 
         public async Task<ResponseModelDto<UserDto?>> GetById(int id)
         {
@@ -37,7 +36,6 @@ namespace NetBootcamp.Service.Users
 
             return ResponseModelDto<UserDto?>.Success(userAsDto);
         }
-
 
         public async Task<ResponseModelDto<int>> Create(UserCreateRequestDto request)
         {
@@ -92,6 +90,13 @@ namespace NetBootcamp.Service.Users
             //}
 
             await userRepository.Delete(id);
+            await unitOfWork.CommitAsync();
+            return ResponseModelDto<NoContent>.Success(HttpStatusCode.NoContent);
+        }
+
+        public async Task<ResponseModelDto<NoContent>> UpdateNameUser(int id, string name)
+        {
+            await userRepository.UpdateNameUser(name, id);
             await unitOfWork.CommitAsync();
             return ResponseModelDto<NoContent>.Success(HttpStatusCode.NoContent);
         }

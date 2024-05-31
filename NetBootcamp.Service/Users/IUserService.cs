@@ -14,5 +14,6 @@ namespace NetBootcamp.Service.Users
 
         Task<ResponseModelDto<NoContent>> Update(int userId, UserUpdateRequestDto request);
         Task<ResponseModelDto<NoContent>> Delete(int id);
+        Task<ResponseModelDto<NoContent>> UpdateNameUser(int id, string name);
     }
 }

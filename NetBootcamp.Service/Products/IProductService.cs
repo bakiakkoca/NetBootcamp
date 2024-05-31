@@ -13,5 +13,7 @@ namespace NetBootcamp.Service.Products
 
         Task<ResponseModelDto<NoContent>> Delete(int id);
         Task<ResponseModelDto<NoContent>> Update(int id, ProductUpdateRequestDto request);
+
+        Task<ResponseModelDto<NoContent>> UpdateProductName(int id, string name);
     }
 }

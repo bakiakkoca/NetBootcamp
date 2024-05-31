@@ -9,10 +9,12 @@ namespace NetBootcamp.API.Users
     public class UsersController(IUserService userService) : CustomBaseController
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll() => Ok(await userService.GetAll());
+        public async Task<IActionResult> GetAll() 
+            => Ok(await userService.GetAll());
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetById(int userId) => CreateActionResult(await userService.GetById(userId));
+        public async Task<IActionResult> GetById(int userId) 
+            => CreateActionResult(await userService.GetById(userId));
 
         [HttpPost]
         public async Task<IActionResult> Create(UserCreateRequestDto request)
@@ -24,10 +26,17 @@ namespace NetBootcamp.API.Users
         }
 
         [HttpPut("{userId}")]
-        public async Task<IActionResult> Update(int userId, UserUpdateRequestDto request) => CreateActionResult(await userService.Update(userId, request));
+        public async Task<IActionResult> Update(int userId, UserUpdateRequestDto request) 
+            => CreateActionResult(await userService.Update(userId, request));
 
         [HttpDelete("{userId}")]
-        public async Task<IActionResult> Delete(int userId) => CreateActionResult(await userService.Delete(userId));
+        public async Task<IActionResult> Delete(int userId) 
+            => CreateActionResult(await userService.Delete(userId));
+
+        [HttpPut("UpdateNameUser")]
+        public async Task<IActionResult> UpdateNameUser(UserUpdateNameRequestDto request)
+            => CreateActionResult(await userService.UpdateNameUser(request.Id, request.Name));
+        
 
     }
 }

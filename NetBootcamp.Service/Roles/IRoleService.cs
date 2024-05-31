@@ -1,8 +1,8 @@
-﻿    using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using NetBootcamp.Service.Roles.DTOs;
 using NetBootcamp.Service.SharedDTOs;
 
-namespace NetBootcamp.Repository.Roles
+namespace NetBootcamp.Service.Roles
 {
     public interface IRoleService
     {
@@ -14,5 +14,7 @@ namespace NetBootcamp.Repository.Roles
 
         Task<ResponseModelDto<NoContent>> Delete(int roleId);
         Task<ResponseModelDto<NoContent>> Update(int roleId, RoleUpdateRequestDto request);
+
+        Task<ResponseModelDto<NoContent>> UpdateRoleName(string roleName, int roleId);
     }
 }
