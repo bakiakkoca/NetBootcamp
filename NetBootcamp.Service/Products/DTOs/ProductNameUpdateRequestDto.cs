@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace NetBootcamp.Service.Products.DTOs
 {
-    public record ProductUpdateNameRequestDto(int Id, string Name);
+    public record ProductNameUpdateRequestDto(int Id, string Name);
 }

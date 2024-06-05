@@ -25,10 +25,11 @@ namespace NetBootcamp.Service.Products
         public async Task<ResponseModelDto<ProductDto?>> GetById(int id)
         {
             var hasProduct = await productRepository.GetById(id);
-            if (hasProduct is null)
-            {
-                return ResponseModelDto<ProductDto?>.Fail("Urun bulunamadi", HttpStatusCode.NotFound);
-            }
+            //filter yazdik NotFoundFilter o yuzden kaldirdik.
+            //if (hasProduct is null)
+            //{
+            //    return ResponseModelDto<ProductDto?>.Fail("Urun bulunamadi", HttpStatusCode.NotFound);
+            //}
 
             var productAsDto = mapper.Map<ProductDto>(hasProduct);
             return ResponseModelDto<ProductDto?>.Success(productAsDto);
@@ -60,6 +61,7 @@ namespace NetBootcamp.Service.Products
         public async Task<ResponseModelDto<NoContent>> Update(int id, ProductUpdateRequestDto request)
         {
             var hasProduct = await productRepository.GetById(id);
+
             hasProduct.Name = request.Name;
             hasProduct.Price = request.Price;
             hasProduct.Stock = request.Stock;

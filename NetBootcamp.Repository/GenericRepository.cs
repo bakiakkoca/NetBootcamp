@@ -5,6 +5,7 @@ namespace NetBootcamp.Repository
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity<int>
     {
         public DbSet<T> DbSet { get; set; }
+
         protected AppDbContext Context;
 
         public GenericRepository(AppDbContext context)

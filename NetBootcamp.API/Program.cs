@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetBootcamp.Repository;
 using NetBootcamp.Service;
@@ -23,16 +24,16 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         x.MigrationsAssembly(typeof(RepositoryAssembly).Assembly.GetName().Name);
     }));
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddAutoMapper(typeof(ServiceAssembly).Assembly);
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
 
 builder.Services.AddUserService();
 builder.Services.AddRoleService();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddAutoMapper(typeof(ServiceAssembly).Assembly);
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddProductService();
-
-
+builder.Services.Configure<ApiBehaviorOptions>(x => { x.SuppressModelStateInvalidFilter = true; });
 
 
 

@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using NetBootcamp.Service.Products.DTOs;
 
-namespace NetBootcamp.Service.Products.ProductUpdateNameUseCase
+namespace NetBootcamp.Service.Products.ProductNameUpdateUseCase
 {
-    public class ProductUpdateNameRequestValidator : AbstractValidator<ProductUpdateNameRequestDto>
+    public class ProductNameUpdateRequestValidator : AbstractValidator<ProductNameUpdateRequestDto>
     {
-        public ProductUpdateNameRequestValidator()
+        public ProductNameUpdateRequestValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("urun alani bos gecilemez")

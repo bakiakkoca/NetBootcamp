@@ -12,7 +12,8 @@ namespace NetBootcamp.API.Products
         public async Task<IActionResult> GetAll() 
             => Ok(await productService.GetAll());
 
-        [HttpGet("{productId}")]
+        [ServiceFilter(typeof(NotFoundFilter))]
+        [HttpGet("{productId:int}")]
         public async Task<IActionResult> GetById(int productId) 
             => CreateActionResult(await productService.GetById(productId));
 
@@ -23,16 +24,19 @@ namespace NetBootcamp.API.Products
             return CreateActionResult(result, nameof(GetById), new { productId = result.Data });
         }
 
-        [HttpPut("{productId}")]
+        [ServiceFilter(typeof(NotFoundFilter))]
+        [HttpPut("{productId:int}")]
         public async Task<IActionResult> Update(int productId, ProductUpdateRequestDto request) 
             => CreateActionResult(await productService.Update(productId, request));
 
-        [HttpDelete("{productId}")]
+        [ServiceFilter(typeof(NotFoundFilter))]
+        [HttpDelete("{productId:int}")]
         public async Task<IActionResult> Delete(int productId) 
             => CreateActionResult(await productService.Delete(productId));
 
+        [ServiceFilter(typeof(ProductNameUpdateFilter))]
         [HttpPut("UpdateProductName")]
-        public async Task<IActionResult> UpdateProductName(ProductUpdateNameRequestDto request) 
+        public async Task<IActionResult> UpdateProductName(ProductNameUpdateRequestDto request) 
             => CreateActionResult(await productService.UpdateProductName(request.Id, request.Name));
     }
 
